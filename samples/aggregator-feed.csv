@@ -1,0 +1,7 @@
+aggregator_id,row_ref,product,applicant_id,name,dob,email,annual_income,monthly_debt,amount,term_months,documents,vin,purchase_price,debts
+ratehub,r1001,personal,agg-5001,Maya Fernandes,1988-03-14,maya.fernandes@example.com,94000,420,12000,48,GOV_ID|PAYSTUB,,,
+ratehub,r1002,auto,agg-5002,Tomas Becker,1979-11-02,tomas.becker@example.com,118000,610,26000,60,GOV_ID|PAYSTUB|VEHICLE_PURCHASE_AGREEMENT,1HGCV1F30LA012345,30500,
+ratehub,r1003,debt consolidation,agg-5003,Ines Laurent,1991-07-21,ines.laurent@example.com,87000,900,9800,36,GOV_ID|PAYSTUB|DEBT_STATEMENTS,,,Northline Card=5400|Cobalt Card=4400
+ratehub,r1004,personal,agg-5004,Broken Row,1990-01-01,broken@example.com,80000,300,not-a-number,36,GOV_ID|PAYSTUB,,,
+ratehub,r1005,personal,agg-5005,Samuel Osei,1985-05-30,samuel.osei@example.com,102000,380,15000,60,GOV_ID,,,
+ratehub,r1001,personal,agg-5001,Maya Fernandes,1988-03-14,maya.fernandes@example.com,94000,420,12000,48,GOV_ID|PAYSTUB,,,

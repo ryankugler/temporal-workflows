@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lending Ops · PocketHealth</title>
+  <link rel="icon" href="brand/pockethealth-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="brand.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/flow" aria-label="Lending Ops home">
+      <span class="logo" id="logo"></span>
+      <span class="product">Lending Ops <span class="demo-tag">case study demo</span></span>
+    </a>
+    <nav class="tabs" id="tabs">
+      <a href="#/flow" data-tab="flow">Flow</a>
+      <a href="#/cases" data-tab="cases">Cases</a>
+      <a href="#/review" data-tab="review">Review queue <span class="badge" id="review-badge" hidden></span></a>
+      <a href="#/sla" data-tab="sla">SLA watch <span class="badge risk" id="sla-badge" hidden></span></a>
+      <a href="#/audit" data-tab="audit">Audit</a>
+      <a href="#/billing" data-tab="billing">Billing</a>
+      <a href="#/health" data-tab="health">Health <span class="badge warn" id="health-badge" hidden></span></a>
+    </nav>
+    <div class="top-actions">
+      <select id="scenario-select" aria-label="Choose a scenario"><option value="">Choose a scenario…</option></select>
+      <button class="btn primary" id="scenario-go" disabled title="Start one application from the chosen scenario">Synthesize</button>
+      <button class="btn ghost" id="synth-open" title="Start many applications at once: a random mix or a scenario pack">Synthesize many…</button>
+      <button class="btn ghost" id="clear-open" title="Delete synthesized applications and start a fresh audit log">Clear synthesized</button>
+      <a class="btn ghost" id="temporal-link" target="_blank" rel="noopener">Temporal UI ↗</a>
+    </div>
+  </header>
+
+  <div class="conn-banner" id="conn-banner" hidden role="status"></div>
+  <main id="view"></main>
+
+  <!-- Case detail drawer -->
+  <aside class="drawer" id="drawer" hidden aria-label="Application detail">
+    <div class="drawer-head">
+      <div><div class="drawer-title" id="drawer-title"></div><div class="mono muted" id="drawer-sub"></div></div>
+      <button class="btn ghost icon" id="drawer-close" aria-label="Close">✕</button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <!-- Synthesizer dialog -->
+  <dialog id="synth-dialog">
+    <form method="dialog" id="synth-form">
+      <h3>Synthesize many applications</h3>
+      <p class="muted">Starts a <code>synthesizeWorkflow</code> that launches independent loan workflows in parallel. With auto-resolve on, simulated applicants and reviewers answer through the same signals and updates people use.</p>
+      <div class="seg" role="radiogroup" aria-label="What to synthesize">
+        <label class="seg-opt"><input type="radio" name="mode" value="mix" checked> Random mix</label>
+        <label class="seg-opt"><input type="radio" name="mode" value="pack"> Scenario pack</label>
+      </div>
+      <div id="synth-mix-fields" style="display:grid; gap:12px">
+        <label>Applications <input type="number" name="count" value="150" min="1" max="2000"></label>
+        <label>Mix <select name="mix" id="synth-mix"></select></label>
+        <label>Start rate (per second) <input type="number" name="rate" value="15" min="1" max="100"></label>
+      </div>
+      <div id="synth-pack-fields" hidden style="display:grid; gap:8px">
+        <label>Pack <select name="pack" id="synth-pack"></select></label>
+        <p class="muted" id="synth-pack-desc"></p>
+      </div>
+      <label class="check"><input type="checkbox" name="autoResolve" checked> Auto-resolve with simulated applicants and reviewers</label>
+      <div class="dialog-actions">
+        <button class="btn ghost" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn primary" value="go" id="synth-go">Start run</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Clear synthesized data -->
+  <dialog id="clear-dialog">
+    <form method="dialog" id="clear-form">
+      <h3>Clear synthesized data?</h3>
+      <p id="clear-summary">Counting…</p>
+      <p class="muted">Deletes every application started from a scenario, a pack or the synthesizer, with its child workflows, from Temporal. Running ones are stopped. The audit log is archived as it is and a new one starts without them. This can’t be undone in Temporal; the archived log keeps the record.</p>
+      <div class="dialog-actions">
+        <button class="btn ghost" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn danger" value="clear" id="clear-go">Delete synthesized data</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

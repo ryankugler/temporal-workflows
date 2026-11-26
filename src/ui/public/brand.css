@@ -1,0 +1,58 @@
+/* PocketHealth brand tokens (pockethealth.com, inspected 2026-11-26). Mirrored in src/reports/brand.ts. */
+:root {
+  --ph-blue: #0066FF;
+  --ph-blue-hover: #0052CC;
+  --ph-blue-tint: #EFF7FF;
+  --ph-ink: #0F172A;
+  --ph-text: #475569;
+  --ph-muted: #64748B;
+  --ph-border: #CBD5E1;
+  --ph-divider: #E2E8F0;
+  --ph-surface: #F8FAFC;
+  --ph-card: #FFFFFF;
+  --ph-radius: 7px;
+  --ph-radius-lg: 12px;
+  --ph-shadow: 0 1px 2px rgba(15, 23, 42, .06), 0 4px 16px rgba(15, 23, 42, .04);
+  --ph-font: Inter, Arial, sans-serif;
+
+  --st-received: #94A3B8;
+  --st-validating: #7C8BA1;
+  --st-awaiting-docs: #0EA5E9;
+  --st-enriching: #64748B;
+  --st-awaiting-provider: #D946EF;
+  --st-underwriting: #475569;
+  --st-human-review: #7C3AED;
+  --st-awaiting-signature: #14B8A6;
+  --st-disbursing: #334155;
+  --st-funded: #0066FF;
+  --st-declined: #DC4C4C;
+  --st-escalated: #F59E0B;
+  --ok: #059669;
+  --danger: #DC4C4C;
+  --warn-bg: #FFF7E6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ph-blue: #3D8BFF;
+    --ph-blue-hover: #66A3FF;
+    --ph-blue-tint: #0F2140;
+    --ph-ink: #F1F5F9;
+    --ph-text: #CBD5E1;
+    --ph-muted: #94A3B8;
+    --ph-border: #334155;
+    --ph-divider: #1E293B;
+    --ph-surface: #0B1220;
+    --ph-card: #111A2B;
+    --ph-shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    --st-funded: #3D8BFF;
+    --st-underwriting: #8494AB;
+    --st-disbursing: #A3B1C6;
+    --warn-bg: #2A2110;
+  }
+}
+:root[data-theme="dark"] {
+  --ph-blue: #3D8BFF; --ph-blue-hover: #66A3FF; --ph-blue-tint: #0F2140; --ph-ink: #F1F5F9; --ph-text: #CBD5E1;
+  --ph-muted: #94A3B8; --ph-border: #334155; --ph-divider: #1E293B; --ph-surface: #0B1220; --ph-card: #111A2B;
+  --ph-shadow: 0 1px 2px rgba(0, 0, 0, .4); --st-funded: #3D8BFF; --st-underwriting: #8494AB; --st-disbursing: #A3B1C6; --warn-bg: #2A2110;
+}

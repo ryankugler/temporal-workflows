@@ -1,0 +1,5 @@
+node_modules/
+audit/
+.temporal/
+*.log
+.DS_Store

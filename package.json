@@ -1,0 +1,41 @@
+{
+  "name": "loan-orchestration",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Loan disbursement orchestration on Temporal: child workflows at isolation seams",
+  "scripts": {
+    "start": "tsx src/cli/start.ts",
+    "demo": "tsx src/cli/start.ts --with-demo-data",
+    "server": "tsx src/cli/server.ts",
+    "worker": "tsx src/cli/worker.ts",
+    "ui": "tsx src/cli/ui.ts",
+    "ingest": "tsx src/cli/ingest.ts",
+    "synthesize": "tsx src/cli/synthesize.ts",
+    "review": "tsx src/cli/review.ts",
+    "upload-docs": "tsx src/cli/uploadDocs.ts",
+    "sign": "tsx src/cli/sign.ts",
+    "provider": "tsx src/cli/provider.ts",
+    "status": "tsx src/cli/status.ts",
+    "typecheck": "tsc -p .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@temporalio/activity": "^1.26.0",
+    "@temporalio/client": "^1.26.0",
+    "@temporalio/common": "^1.26.0",
+    "@temporalio/worker": "^1.26.0",
+    "@temporalio/workflow": "^1.26.0",
+    "pdfkit": "^0.15.2"
+  },
+  "devDependencies": {
+    "@temporalio/testing": "^1.26.0",
+    "@types/node": "^26.6.6",
+    "@types/pdfkit": "^0.13.9",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

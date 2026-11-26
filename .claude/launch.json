@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lending-ops-ui",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "ui"
+      ],
+      "port": 3000
+    }
+  ]
+}
