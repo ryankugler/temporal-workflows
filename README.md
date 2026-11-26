@@ -1,5 +1,36 @@
 # Loan Disbursement on Temporal
 
+## 👉 Start here: [How to use it (HOW-TO-USE.md)](HOW-TO-USE.md)
+
+**A plain-language guide for anyone, technical or not:** setup in two commands, a 10-minute tour, and every page of the ops console explained with screenshots.
+
+[![The ops console: every application flowing into Funded, Declined or Escalated](docs/images/01-flow.jpg)](HOW-TO-USE.md)
+
+Run it locally with Node 20+ (nothing else to install):
+
+```bash
+npm install
+```
+
+```bash
+npm run demo
+```
+
+Then open **http://localhost:3000**.
+
+| I want to… | Go to |
+|---|---|
+| Set it up | [Setting it up (about 5 minutes)](HOW-TO-USE.md#2-set-it-up-about-5-minutes) |
+| Show it to someone in 10 minutes | [A 10-minute tour](HOW-TO-USE.md#3-a-10-minute-tour) |
+| Understand each page | [Every page explained](HOW-TO-USE.md#4-every-page-explained) |
+| Create test applications, or fill the SLA board | [Creating test applications](HOW-TO-USE.md#5-creating-test-applications-synthesize) |
+| See how the pieces connect | [How everything is connected](HOW-TO-USE.md#6-how-everything-is-connected) |
+| Fix a problem | [Stopping, resetting and troubleshooting](HOW-TO-USE.md#7-stopping-resetting-and-troubleshooting) |
+
+The rest of this README is the engineering design: architecture, decisions and trade-offs.
+
+---
+
 This is a design and working prototype for the loan disbursement case study. Applications arrive from three channels: the portal, broker email and aggregator batch files. Each application is a Temporal workflow that runs validation, third-party enrichment, product underwriting, human review, e-signature and disbursement. Every application ends **FUNDED**, **DECLINED** or **ESCALATED**.
 
 Orchestration is built around **child workflows at isolation seams**: one parent workflow per application owns the lifecycle and every wait on a person, and four kinds of child workflow handle the non-interactive stages (enrichment, underwriting per product, disbursement, billing).
